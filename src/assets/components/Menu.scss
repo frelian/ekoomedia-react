@@ -1,0 +1,26 @@
+.menu-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.7rem;
+    text-align: center;
+    list-style-type: none;
+    padding: 0px;
+    width: 90%;
+
+    .menu-item {
+        background-color: transparent;
+        padding: 10px;
+        flex: 50%;
+        list-style: none;
+    }
+
+    .menu-item:hover{
+        text-decoration: overline;
+        cursor: pointer;
+    }
+
+    /* Responsive movil !! */
+    @media (max-width: 720px) {
+        flex-direction: column;
+    }
+}

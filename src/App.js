@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Menu from "./components/Menu";
+import Formulario from "./components/Formulario";
+import { connect } from "react-redux";
+// import Lightbox from "./components/Lightbox";
+import LightboxHook from "./components/LightboxHook";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  componentDidMount() {
+  }
+
+  render() {
+    return (
+        <div className="App">
+            <header className="App-header">
+                <Menu />
+            </header>
+            <div className="content">
+              <Formulario titulo={this.props.titleRedux} />
+            </div>
+
+        <LightboxHook show={this.props.isLightboxRedux} msgLightbox={this.props.messageRedux} bgColor={this.props.bgcolorRedux} />
+        </div>
+    );
+  }
 }
 
-export default App;
+// mapeo los estados de redux a props
+const mapStateToProps = (state) => {
+  return { 
+      // declaro variables redux
+      titleRedux: state.title,
+      isLightboxRedux: state.isLightbox,
+      messageRedux: state.responseMessage,
+      bgcolorRedux: state.bgColorMessage
+  };
+};
+
+// connect conecta con Redux
+// convertir el estado redux a propiedades (props)
+export default connect(mapStateToProps)(App);
